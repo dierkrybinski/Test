@@ -91,6 +91,7 @@ class FormularTest extends ipsmodule
             $this->SendDebug('Connect [' . $_IPS['THREAD'] . ']', 'Start ' . sprintf('%.3f', ((microtime(true) - $this->Runtime) * 1000)) . ' ms', 0);
 			$connectionInfo = array( "Database"=>"IPSLOG", "UID"=>"HA\\Administrator", "PWD"=>"JeTgDr#1981");
             $this->DB = $conn = sqlsrv_connect( "HASQL01\\IPS", $connectionInfo);
+			print_r( sqlsrv_errors(), true);
 			echo $this->Translate('$conn: ' . $conn);
 			if ($conn)
 			{ 
