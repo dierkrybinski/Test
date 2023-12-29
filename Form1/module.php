@@ -17,11 +17,17 @@ class FormularTest extends ipsmodule
         $this->RegisterPropertyString('Host', '');
         $this->RegisterPropertyString('Username', '');
         $this->RegisterPropertyString('Password', '');
-        $this->RegisterPropertyString('Database', 'IPS');
+        $this->RegisterPropertyString('Database', 'IPSLOG');
         $this->RegisterPropertyString('Variables', json_encode([]));
         $this->RegisterTimer('LogData', 0, 'ACmySQL_LogData($_IPS[\'TARGET\']);');
         $this->Vars = [];
         $this->Buffer = [];
+		
+		        if (!$this->Login()) {
+            echo $this->Translate('Cannot connect to database.');
+            $this->SetStatus(IS_EBASE + 2);
+            return;
+        }
     }
 
     /**
@@ -72,6 +78,27 @@ class FormularTest extends ipsmodule
         fclose($myfile);
         $Result = $NR + $NR;
         return json_encode($Result);
+    }
+	
+	private $isConnected = false;
+
+    protected function Login()
+    {
+        if ($this->ReadPropertyString('Host') == '') {
+            return false;
+        }
+        if (!$this->isConnected) {
+            $this->SendDebug('Connect [' . $_IPS['THREAD'] . ']', 'Start ' . sprintf('%.3f', ((microtime(true) - $this->Runtime) * 1000)) . ' ms', 0);
+			$connectionInfo = array( "Database"=>"IPSLOG, "UID"=>"HA\Administrator", "PWD"=>"JeTgDr#1981");
+            $this->DB = $conn = sqlsrv_connect( "HASQL01\IPS", $connectionInfo);;
+            if ($this->DB->connect_errno == 0) {
+                $this->isConnected = true;
+                $this->SendDebug('Login [' . $_IPS['THREAD'] . ']', sprintf('%.3f', ((microtime(true) - $this->Runtime) * 1000)) . ' ms', 0);
+                return true;
+            }
+            return false;
+        }
+        return true;
     }
     
 
