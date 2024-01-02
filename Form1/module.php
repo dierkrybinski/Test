@@ -63,7 +63,7 @@ class FormularTest extends ipsmodule
 		        $this->SendDebug(__FUNCTION__, 'open database ' . $database . '@' . $this->ReadPropertyString('Host') . ':' . '(user=' . $user . ')', 0);
 
         //$dbHandle = new mysqli($server, $user, $password, $database, "3306");
-		$dbHandle = mysqli_CONNECT($server, $user, $password, $database, "3306");
+		$dbHandle = mysqli_connect($server, $user, $password, $database, "3306");
         if ($dbHandle->connect_errno) 
 		{
             $this->SendDebug(__FUNCTION__, " => can't open database", 0);
