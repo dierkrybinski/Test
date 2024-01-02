@@ -19,7 +19,7 @@ class FormularTest extends ipsmodule
         $this->RegisterPropertyString('Password', '');
         $this->RegisterPropertyString('Database', 'IPS_LOG');
 		
-
+		Login();
 
 		
 	}
