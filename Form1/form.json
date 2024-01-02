@@ -36,59 +36,6 @@
                                 }]
                         }]
                 },
-                {
-                    "type": "List",
-                    "name": "Variables",
-                    "rowCount": 20,
-                    "add": true,
-                    "delete": true,
-                    "sort": {
-                        "column": "VariableId",
-                        "direction": "ascending"
-                    },
-                    "columns": [{
-                            "caption": "VariableID",
-                            "name": "Variable",
-                            "width": "100px",
-                            "add": "",
-                            "save": false
-                        }, {
-                            "caption": "Variable",
-                            "name": "VariableId",
-                            "width": "auto",
-                            "add": 0,
-                            "edit": {
-                                "type": "SelectVariable"
-                            }
-                        }, {
-                            "caption": "First value",
-                            "name": "FirstTimestamp",
-                            "width": "200px",
-                            "add": "",
-                            "save": false
-                        }, {
-                            "caption": "Last value",
-                            "name": "LastTimestamp",
-                            "width": "200px",
-                            "add": "",
-                            "save": false
-                        }, {
-                            "caption": "Count",
-                            "name": "Count",
-                            "width": "100px",
-                            "add": "",
-                            "save": false
-                        }, {
-                            "caption": "Size",
-                            "name": "Size",
-                            "width": "100px",
-                            "add": "",
-                            "save": false
-                        }
-                    ],
-                    "values": []
-                }
-            ],
     "actions":
             [
                 {
