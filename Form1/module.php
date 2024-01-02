@@ -65,7 +65,7 @@ class FormularTest extends ipsmodule
         if ($dbHandle->connect_errno) 
 		{
             $this->SendDebug(__FUNCTION__, " => can't open database", 0);
-            IPS_LogMessage("MYSQL:","can't open database " . $database . '@' . $server . ': ' . $dbHandle->connect_error . "\n";
+            IPS_LogMessage("MYSQL:","can't open database " . $database . '@' . $server . ': ' . $dbHandle->connect_error . "\n");
         //if (!$this->isConnected) {
          //   $this->SendDebug('Connect [' . $_IPS['THREAD'] . ']', 'Start ' . sprintf('%.3f', ((microtime(true) - $this->Runtime) * 1000)) . ' ms', 0);
          //   $this->DB = @new \mysqli('p:' . $this->ReadPropertyString('Host'), $this->ReadPropertyString('Username'), $this->ReadPropertyString('Password'));
