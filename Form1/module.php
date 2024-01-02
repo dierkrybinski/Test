@@ -50,7 +50,7 @@ class FormularTest extends ipsmodule
     protected function Login()
     {
 		$server = $this->ReadPropertyString('Host');
-        $port = $this->ReadPropertyInteger('port');
+        //$port = $this->ReadPropertyInteger('port');
         $user = $this->ReadPropertyString('Username');
         $password = $this->ReadPropertyString('Password');
         $database = $this->ReadPropertyString('Database');
