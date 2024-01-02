@@ -19,10 +19,11 @@ class FormularTest extends ipsmodule
         $this->RegisterPropertyString('Password', '');
         $this->RegisterPropertyString('Database', 'IPSLOG');
 		
-        if (!$this->Login()) {
-        echo $this->Translate('Cannot connect to database.');
-        $this->SetStatus(IS_EBASE + 2);
-        return;
+        if (!$this->Login()) 
+		{
+			echo $this->Translate('Cannot connect to database.');
+			$this->SetStatus(IS_EBASE + 2);
+			return;
         }
     }
 
@@ -42,7 +43,7 @@ class FormularTest extends ipsmodule
     {
         $form = json_decode(file_get_contents(__DIR__ . '/form.json'), true);
 
-        $ConfigVars = json_decode($this->ReadPropertyString('Variables'), true);
+        //$ConfigVars = json_decode($this->ReadPropertyString('Variables'), true);
  
         return json_encode($form);
     }
