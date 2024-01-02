@@ -17,14 +17,10 @@ class FormularTest extends ipsmodule
         $this->RegisterPropertyString('Host', '');
         $this->RegisterPropertyString('Username', '');
         $this->RegisterPropertyString('Password', '');
-        $this->RegisterPropertyString('Database', 'IPSLOG');
+        $this->RegisterPropertyString('Database', 'IPS_LOG');
 		
-		if (!$this->Login()) 
-		{
-			echo $this->Translate('Cannot connect to database.');
-			$this->SetStatus(IS_EBASE + 2);
-			return;
-        }
+
+
 		
 	}
 
@@ -53,18 +49,32 @@ class FormularTest extends ipsmodule
 
     protected function Login()
     {
-        if ($this->ReadPropertyString('Host') == '') {
-            return false;
-        }
-        if (!$this->isConnected) {
-            $this->SendDebug('Connect [' . $_IPS['THREAD'] . ']', 'Start ' . sprintf('%.3f', ((microtime(true) - $this->Runtime) * 1000)) . ' ms', 0);
-            $this->DB = @new \mysqli('p:' . $this->ReadPropertyString('Host'), $this->ReadPropertyString('Username'), $this->ReadPropertyString('Password'));
-            if ($this->DB->connect_errno == 0) {
-                $this->isConnected = true;
-                $this->SendDebug('Login [' . $_IPS['THREAD'] . ']', sprintf('%.3f', ((microtime(true) - $this->Runtime) * 1000)) . ' ms', 0);
-                return true;
-            }
-            return false;
+		$server = $this->ReadPropertyString('Host');
+        $port = $this->ReadPropertyInteger('port');
+        $user = $this->ReadPropertyString('Username');
+        $password = $this->ReadPropertyString('Password');
+        $database = $this->ReadPropertyString('Database');
+        
+		//if ($this->ReadPropertyString('Host') == '') {
+        //    return false;
+        //}
+		
+		        $this->SendDebug(__FUNCTION__, 'open database ' . $database . '@' . $this->ReadPropertyString('Host') . ':' . $port . '(user=' . $user . ')', 0);
+
+        $dbHandle = new mysqli($server, $user, $password, $database, "3306");
+        if ($dbHandle->connect_errno) 
+		{
+            $this->SendDebug(__FUNCTION__, " => can't open database", 0);
+            echo "can't open database " . $database . '@' . $server . ': ' . $dbHandle->connect_error . "\n";
+        //if (!$this->isConnected) {
+         //   $this->SendDebug('Connect [' . $_IPS['THREAD'] . ']', 'Start ' . sprintf('%.3f', ((microtime(true) - $this->Runtime) * 1000)) . ' ms', 0);
+         //   $this->DB = @new \mysqli('p:' . $this->ReadPropertyString('Host'), $this->ReadPropertyString('Username'), $this->ReadPropertyString('Password'));
+         //   if ($this->DB->connect_errno == 0) {
+         //       $this->isConnected = true;
+         //       $this->SendDebug('Login [' . $_IPS['THREAD'] . ']', sprintf('%.3f', ((microtime(true) - $this->Runtime) * 1000)) . ' ms', 0);
+         //       return true;
+         //   }
+         //   return false;
         }
         return true;
     }
