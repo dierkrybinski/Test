@@ -19,6 +19,13 @@ class FormularTest extends ipsmodule
         $this->RegisterPropertyString('Password', '');
         $this->RegisterPropertyString('Database', 'IPSLOG');
 		
+		if (!$this->Login()) 
+		{
+			echo $this->Translate('Cannot connect to database.');
+			$this->SetStatus(IS_EBASE + 2);
+			return;
+        }
+		
 	}
 
     /**
