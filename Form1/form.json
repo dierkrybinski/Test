@@ -4,11 +4,13 @@
                 {
                     "type": "ExpansionPanel",
                     "caption": "Connection",
-                    "items": [
+                    "items": 
+					[
 
                         {
                             "type": "RowLayout",
-                            "items": [
+                            "items": 
+							[
                                 {
                                     "name": "Host",
                                     "type": "ValidationTextBox",
@@ -18,11 +20,13 @@
                                     "name": "Database",
                                     "type": "ValidationTextBox",
                                     "caption": "Database"
-                                }]
+                                }
+							]
                         },
                         {
                             "type": "RowLayout",
-                            "items": [
+                            "items": 
+							[
 
                                 {
                                     "name": "Username",
@@ -33,9 +37,12 @@
                                     "name": "Password",
                                     "type": "PasswordTextBox",
                                     "caption": "Password"
-                                }]
-                        }]
-                },
+                                }
+							]
+                        }
+					]
+				}
+			]
     "actions":
             [
                 {
